@@ -1,8 +1,8 @@
 # Rustlang 2023
 
-## Section 1: rust_devbranch_start01
+## Section 1: main branch
 
-### Create a New Project
+##### Create a New Project
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -10,7 +10,7 @@
 >$ cargo new <project-name> --bin
 ```
 
-### Run the <tree> command to see the folder structure generated
+##### Run the <tree> command to see the folder structure generated
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -25,7 +25,7 @@ tree .
        └── enum_example.rs
 ```
 
-### To add a cargo.toml file to an existing project
+##### To add a cargo.toml file to an existing project
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -33,7 +33,7 @@ tree .
 >$ cargo init
 ```
 
-### Update to the latest and stable version
+##### Update to the latest and stable version
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -43,7 +43,7 @@ tree .
 
 <!-- livebook:{"break_markdown":true} -->
 
-### Cargo add ons you need:
+##### Cargo add ons you need:
 
 > > >
 
@@ -79,7 +79,7 @@ tree .
 
 <!-- livebook:{"break_markdown":true} -->
 
-### Creating a workspace for all of the projects or if its a bunch of microservices
+##### Creating a workspace for all of the projects or if its a bunch of microservices
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -122,4 +122,8 @@ dependencies = [
 ...
 ```
 
-### You will see a lot of default packages but whats important is that `project1` when you ran `cargo new project1` created the `project` in the `workspace` with its `dependencies`. In this case the `dependency` was the `rand` package.
+##### You will see a lot of default packages but whats important is that `project1` when you ran `cargo new project1` created the `project` in the `workspace` with its `dependencies`. In this case the `dependency` was the `rand` package.
+
+## Section 1: rust_devbranch_start01
+
+#### Basic Rust Types
