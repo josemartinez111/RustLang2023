@@ -1,10 +1,12 @@
 //! zero2prod/src/main.rs
 use std::io::Result;
-use actix_web::{web, App, HttpRequest, HttpServer, Responder};
+use actix_web::{web, App, HttpRequest, HttpServer, Responder, HttpResponse};
 //? ********************************************************
 
 type Void = ();
+
 //? ********************************************************
+/// [Responder is nothing more than a conversion trait into a HttpResponse]
 /// greet is an asynchronous function that takes an HttpRequest
 /// as input and returns something that implements the Responder
 /// trait 19 . A type implements the Responder trait if it can be
@@ -35,11 +37,18 @@ async fn greet(req: HttpRequest) -> impl Responder {
 	let name: &str = req.match_info().get("name").unwrap_or("World");
 	format!("Hello {}!", &name)
 }
+
+async fn health_check(req: HttpRequest) -> impl Responder {
+	// Indicates unfinished code. This can be useful if
+	// you are prototyping and are just looking to have
+	// your code type-check.
+	// todo!()
+	HttpResponse::Ok().finish()
+}
 //? ********************************************************
 
 #[tokio::main]
 async fn main() -> Result<Void> {
-	
 	HttpServer::new(|| {
 		App::new()
 			.route("/", web::get().to(greet))
