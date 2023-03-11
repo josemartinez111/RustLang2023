@@ -4,5 +4,6 @@
 
 members = [
     "structs_methods",
-    "control_flow"
+    "control_flow",
+    "zero2prod"
 ]
