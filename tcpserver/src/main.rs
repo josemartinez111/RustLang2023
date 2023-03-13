@@ -3,24 +3,23 @@ use std::net::{TcpListener};
 //? ********************************************************
 
 fn handle_connection(connection_listener: TcpListener) {
-	// Iterate over incoming connections using a closure
+	// ? Iterate over incoming connections using a closure
 	connection_listener.incoming().for_each(|stream| {
-		// Use a match to handle possible errors with the stream
+		// ? Use a match to handle possible errors with the stream
 		match stream {
 			Ok(stream) => {
-				// If the stream is valid, handle it here
-				println!(
-					"Client connected: {}",
-					// Use unwrap_or_else to handle possible errors with peer_addr()
-					stream.peer_addr().unwrap_or_else(|err|
-						panic!("Failed to get peer address: {}", err)
-					)
-				)
+				// ? If the stream is valid, handle it here
+				let remote_socket_address = stream.peer_addr()
+					.map_or_else(|_|
+						"Failed to get peer address".to_string(),
+						|socket| format!("{}", socket),
+					);
+				
+				// Print a message indicating that a client has connected, along with the
+				// remote socket address
+				println!("Client connected: {}", remote_socket_address);
 			}
-			Err(err) => {
-				// If there is an error, print a message
-				eprintln!("failed: {}", err);
-			}
+			Err(err) => { eprintln!("failed: {}", err); }
 		}
 	})
 }
