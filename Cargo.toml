@@ -1,7 +1,11 @@
-[workspace]
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
+[workspace]
 members = [
-"structs_methods"
+    "structs_methods",
+    "control_flow",
+    "tcpserver",
+    "tcpclient",
+    "http",
+    "httpserver",
 ]
+
