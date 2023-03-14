@@ -1,50 +1,59 @@
+use std::io;
+use std::io::{Read, Write};
 // ! tcpserver/src/main.rs
-use std::net::{TcpListener};
+use std::net::{TcpListener, TcpStream};
 //? ********************************************************
 
-fn handle_connection(connection_listener: TcpListener) {
-	// ? Iterate over incoming connections using a closure
-	connection_listener.incoming().for_each(|stream| {
-		// ? Use a match to handle possible errors with the stream
-		match stream {
-			Ok(stream) => {
-				// ? If the stream is valid, handle it here
-				let remote_socket_address = stream.peer_addr()
-					.map_or_else(|_|
-						"Failed to get peer address".to_string(),
-						|socket| format!("{}", socket),
-					);
-				
-				// Print a message indicating that a client has connected, along with the
-				// remote socket address
-				println!("Client connected: {}", remote_socket_address);
-			}
-			Err(err) => { eprintln!("failed: {}", err); }
-		}
-	})
-}
+type Void = ();
 //? ********************************************************
 
-fn main() {
-	// In Rust, TcpListener is a type that represents a TCP socket server that listens
-	// for incoming connections. It is part of the standard library in Rust and is used
-	// for creating server applications that listen for connections on a specific port and
-	// IP address.TCP stands for Transmission Control Protocol, which is one of the core
-	// protocols of the Internet Protocol (IP) suite. TCP is responsible for establishing
-	// and maintaining connections between network applications, ensuring reliable transmission
-	// of data between them, and managing flow control and congestion control to prevent
-	// network congestion and loss of data.In web development, TCP is used extensively for
-	// communication between servers and clients over the internet. When a client makes a
-	// request to a server, it sends the request over a TCP connection. The server receives
-	// the request, processes it, and sends a response back to the client over the same TCP
-	// connection. This is the basic mechanism behind HTTP, the protocol used for most web
-	// traffic. TCP is also used for other web protocols such as FTP, SSH, and Telnet.
-	let connection_listener = TcpListener::bind("127.0.0.1:3000")
-		.unwrap_or_else(|err| {
-			panic!("Failed to bind to socket: {}", err)
-		});
+fn handle_connection(mut stream: TcpStream) -> io::Result<Void> {
+// *print a message indicating that a connection has been established
+	println!("Client connected: {}", stream.peer_addr()?);
 	
-	println!("Running on port https://localhost:3000");
-	handle_connection(connection_listener);
+	// Read data from the client
+	let mut incoming_data_buffer: [u8; 1024] = [0; 1024];
+	let num_bytes_read: usize = stream.read(&mut incoming_data_buffer)?;
+	
+	// Write the same data back to the client
+	stream.write(&incoming_data_buffer[0..num_bytes_read])?;
+	Ok(())
 }
 //? ********************************************************
+
+fn main() -> io::Result<Void> {
+	// *bind the server to the address and port
+	let connection_listener = TcpListener::bind("127.0.0.1:3000")?;
+	// print a message indicating that the server is running if the bind was `Ok()`
+	println!("Server is running on port: {}", connection_listener.local_addr()?);
+	
+	// handle incoming connections
+	connection_listener.incoming().for_each(|stream| {
+		match stream {
+			Ok(ok_stream) => {
+				// *handle the stream error here
+				if let Err(err) = handle_connection(ok_stream) {
+					eprintln!("Failed to handle connection: {}", err);
+				}
+			}
+			Err(err) => eprintln!("Failed to accept client connection: {}", err),
+		}
+	});
+	
+	Ok(())
+}
+//? ********************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
