@@ -3,9 +3,6 @@
 members = [
     "structs_methods",
     "control_flow",
-    "tcpserver",
-    "tcpclient",
-    "http",
-    "httpserver",
+    "tutor-nodb",
 ]
 
