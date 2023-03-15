@@ -14,9 +14,7 @@ pub async fn health_check_handler(app_state: web::Data<AppSate>) -> HttpResponse
 			// !into_inner: consumes this error indicating that a lock is poisoned,
 			// !returning the underlying guard to allow access regardless
 			poisoned.into_inner()
-		},
-			|guard| guard,
-		);
+		}, |guard| guard, );
 	
 	let response: String = format!(
 		"{} {} times",
