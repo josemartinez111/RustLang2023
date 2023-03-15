@@ -1,0 +1,17 @@
+[package]
+name = "tutor-nodb"
+version = "0.1.0"
+authors = ["Alias the Great111"]
+edition = "2021"
+default-run="tutor-service"
+
+[[bin]]
+name = "basic-server"
+
+[[bin]]
+name = "tutor-service"
+
+[dependencies]
+# !Actix web framework and run-time
+actix-rt = "2.8.0"
+actix-web = "4.3.1"
