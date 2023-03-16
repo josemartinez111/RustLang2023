@@ -19,6 +19,8 @@ use crate::types::Void;
 
 #[actix_rt::main]
 async fn main() -> io::Result<Void> {
+	let host_address: &str = "127.0.0.1:3000";
+	
 	// *Initialize application state
 	let shared_data: Data<AppSate> = web::Data::new(AppSate {
 		health_check_response: "I'm good. You've already asked me ".to_string(),
@@ -32,8 +34,12 @@ async fn main() -> io::Result<Void> {
 		.configure(general_routes)
 	};
 	
-	HttpServer::new(app).bind("127.0.0.1:3000")?.run().await
+	// !Displaying server address in the terminal
+	println!("Server live at http://{}", host_address);
 	
+	HttpServer::new(app)
+		.bind(host_address)?
+		.run().await
 }
 //? ********************************************************
 
