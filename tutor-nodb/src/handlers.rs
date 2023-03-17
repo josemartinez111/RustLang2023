@@ -23,7 +23,9 @@ pub async fn health_check_handler(app_state: web::Data<AppSate>) -> HttpResponse
 	);
 	
 	*visit_count += 1;
-	HttpResponse::Ok().json(&response)
+	let result = HttpResponse::Ok().json(&response);
+	
+	result
 }
 //? ********************************************************
 //? ********************************************************
