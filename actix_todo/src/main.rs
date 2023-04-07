@@ -1,13 +1,10 @@
-// views/to_do
+// ! actix_todo/main.rs
 //? ********************************************************
 
-use actix_web::web::ServiceConfig;
-use crate::views::auth::auth_views_factory;
-
-mod auth;
+mod to_do;
 //? ********************************************************
 
-pub fn views_factory(app: &mut ServiceConfig) {
-	auth_views_factory(app);
+fn main() {
+    println!("actix_todo!");
 }
 //? ********************************************************

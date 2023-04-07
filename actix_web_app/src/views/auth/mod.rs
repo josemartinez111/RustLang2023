@@ -1,4 +1,4 @@
-// views/auth/mod.rs
+// views/auth/to_do
 //? ********************************************************
 
 use actix_web::web::{get, scope, ServiceConfig};
