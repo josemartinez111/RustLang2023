@@ -4,5 +4,6 @@ members = [
     "structs_methods",
     "control_flow",
     "tutor-nodb",
+    "actix_web_app",
 ]
 

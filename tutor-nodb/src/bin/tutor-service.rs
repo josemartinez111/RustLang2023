@@ -44,12 +44,15 @@ async fn main() -> io::Result<Void> {
 		.bind(host_address)?;
 	
 	// *Check if the server is listening on any addresses, and get the first address
-	if let Some(address) = server.addrs().first() {
-		let port: u16 = address.port();
-		// !Displaying server address in the terminal
-		println!("Server is running on http://{}:{}", address.ip(), port);
-	} else {
-		eprintln!("No listening addresses found");
+	match server.addrs().first() {
+		Some(address) => {
+			let port: u16 = address.port();
+			// !Displaying server address in the terminal
+			println!("Server is running on http://{}:{}", address.ip(), port);
+		}
+		None => {
+			eprintln!("No listening addresses found");
+		}
 	}
 	
 	// *Start the server and return a success value if it runs successfully
