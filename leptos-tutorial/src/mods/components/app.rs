@@ -12,12 +12,18 @@ use leptos::{
   view,
 };
 
+use crate::mods::components::global_styles::*;
 // ____________________________________________________
 
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
   let (text, set_text) = create_signal(cx, "".to_string());
   let (input_value, set_input) = create_signal(cx, "".to_string());
+  
+  let is_text_empty = move || match text.get().is_empty() {
+    true => H1_STYLE.to_string(),
+    false => H1_STYLE.replace("opacity: 0;", "opacity: 1;"),
+  };
   // ___________________ FUNCTIONS ___________________
   
   let handle_show_text = move |_| {
@@ -38,26 +44,35 @@ pub fn App(cx: Scope) -> impl IntoView {
   };
   // ___________________ MARKUP-VIEW ___________________
   view! { cx,
-    <div>
+    <div style=CONTAINER>
       /* show-button */
-      <button on:click=handle_show_text>
+      <button
+        style=BUTTON_STYLE
+        on:click=handle_show_text
+      >
         Show Text
       </button>
       /* hide-button */
-      <button on:click=handle_hide_text>
+      <button
+        style=BUTTON_STYLE
+        on:click=handle_hide_text
+      >
         Hide Text
       </button>
       /* input field */
       <input
         type="text"
+        style=INPUT_STYLE
         prop:value={input_value}
         on:input=handle_input_change
       />
       /* update-button */
-      <button on:click=handle_update_text>
+      <button
+        style=BUTTON_STYLE
+        on:click=handle_update_text>
         Update Text
       </button>
-      <h1>{text}</h1>
+      <h1 style=is_text_empty>{text}</h1>
     </div>
     }
 }
