@@ -1,0 +1,13 @@
+# ___________________________________________________________
+
+[package]
+name = "leptos-tutorial"
+version = "0.1.0"
+edition = "2021"
+# ___________________________________________________________
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+leptos = { version = "0.4.8", features = ["csr", "nightly"] }
+web-sys = "0.3.64"
+# ___________________________________________________________

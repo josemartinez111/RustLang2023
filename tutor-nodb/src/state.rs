@@ -1,5 +1,7 @@
-// !src/state.rs
+// !src/state.rs use std::sync::Mutex;
+
 use std::sync::Mutex;
+
 //? ********************************************************
 // !The mutexes in this module implement a strategy called "poisoning"
 // !where a mutex is considered poisoned whenever a thread panics while
@@ -14,9 +16,9 @@ use std::sync::Mutex;
 // !has an into_inner method which will return the guard that would have
 // !otherwise been returned on a successful lock. This allows access to the data,
 // !despite the lock being poisoned.
-pub struct AppSate{
-	pub health_check_response: String,
-	pub visit_count: Mutex<u32>
+pub struct AppSate {
+  pub health_check_response: String,
+  pub visit_count: Mutex<u32>,
 }
 //? ********************************************************
 //? ********************************************************
