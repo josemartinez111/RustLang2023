@@ -15,3 +15,5 @@ name = "tutor-service"
 # !Actix web framework and run-time
 actix-rt = "2.8.0"
 actix-web = "4.3.1"
+chrono = { version = "0.4.24", features = ["serde"] }
+serde = { version = "1.0.156", features = ["derive"] }
