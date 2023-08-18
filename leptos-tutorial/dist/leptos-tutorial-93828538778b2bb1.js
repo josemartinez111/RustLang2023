@@ -517,8 +517,8 @@ function __wbg_get_imports() {
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbindgen_closure_wrapper74 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 54, __wbg_adapter_18);
+    imports.wbg.__wbindgen_closure_wrapper65 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 39, __wbg_adapter_18);
         return addHeapObject(ret);
     };
     imports.wbg.__wbindgen_closure_wrapper1169 = function(arg0, arg1, arg2) {
@@ -563,7 +563,7 @@ async function __wbg_init(input) {
     if (wasm !== undefined) return wasm;
 
     if (typeof input === 'undefined') {
-        input = new URL('leptos-tutorial-d1a5407bbb80167e_bg.wasm', import.meta.url);
+        input = new URL('leptos-tutorial-93828538778b2bb1_bg.wasm', import.meta.url);
     }
     const imports = __wbg_get_imports();
 

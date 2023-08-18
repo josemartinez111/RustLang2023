@@ -8,9 +8,9 @@ members = [
     "control_flow",
     "tutor-nodb",
     "actix_web_app",
-    "actix_todo",
     "dog_scraper",
-    "leptos-tutorial"
+    "leptos-tutorial",
+    "flight-example"
 ]
 
 resolver = "2"
