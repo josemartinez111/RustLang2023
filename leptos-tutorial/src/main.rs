@@ -2,9 +2,11 @@
 // ________________________________________________________
 
 mod mods;
+pub mod app;
+pub mod global_styles;
 
 use leptos::{mount_to_body, view};
-use crate::mods::components::app::App;
+use app::App;
 // ________________________________________________________
 
 fn main() {

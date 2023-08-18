@@ -12,7 +12,8 @@ use leptos::{
   view,
 };
 
-use crate::mods::components::global_styles::*;
+use crate::global_styles::*;
+
 // ____________________________________________________
 
 #[component]
@@ -63,7 +64,7 @@ pub fn App(cx: Scope) -> impl IntoView {
       <input
         type="text"
         style=INPUT_STYLE
-        prop:value={input_value}
+        prop:value=input_value
         on:input=handle_input_change
       />
       /* update-button */
