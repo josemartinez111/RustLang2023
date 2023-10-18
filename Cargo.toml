@@ -10,7 +10,8 @@ members = [
     "actix_web_app",
     "dog_scraper",
     "leptos-tutorial",
-    "flight-example"
+    "flight-example",
+    "rust-axum-app"
 ]
 
 resolver = "2"
