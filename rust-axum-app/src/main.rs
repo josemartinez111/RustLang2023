@@ -2,16 +2,16 @@
 // ________________________________________________________
 
 use std::net::SocketAddr;
+
 use axum::Router;
 
-use crate::routes::router::init_routes;
-use crate::server::run_server::run_server;
-use crate::utils::utilities::format_print;
+use rust_axum_app::{
+  utils::utilities::format_print,
+  web::router::{init_routes, routes_static},
+  web::run_server::run_server,
+  web::auth
+};
 
-mod routes { pub mod handlers; pub mod router; }
-mod server { pub mod run_server; }
-mod utils { pub mod utilities; }
-mod models { pub mod health; }
 // ________________________________________________________
 
 // __________________________________________________
@@ -21,7 +21,10 @@ async fn main() {
   // __________________________________________________
   
   // Routes
-  let all_routes = Router::new().merge(init_routes());
+  let all_routes = Router::new()
+    .merge(init_routes())
+    .merge(auth::routes_login::login_routes())
+    .fallback_service(routes_static());
   
   // Server Address
   let url = ([127, 0, 0, 1], 8080);

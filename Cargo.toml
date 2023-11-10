@@ -11,9 +11,10 @@ members = [
     "dog_scraper",
     "leptos-tutorial",
     "flight-example",
-    "rust-axum-app"
+    "rust-axum-app",
+    "demo-vectors",
+    "demo-hashmaps",
 ]
 
 resolver = "2"
 # ___________________________________________________________
-
